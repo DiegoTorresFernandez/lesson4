@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.codedotorg.Movie;
 import com.codedotorg.Rating;
+import com.codedotorg.User;
 
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -77,11 +78,16 @@ public class UserRatingsScreen extends AppScreen {
      */
     public ListView<Rating> createListView() {
         ListView<Rating> listView = new ListView<Rating>();
-        
 
+        User currentUser = MovieApp.getCurrentUser();
 
+        ArrayList<Rating> currentRatings = currentUser.getRatings();
 
-        
+        for(int i=0;i<currentUser.getRatings().size();i++){
+            Rating currentRating = currentRatings.get(i);
+            String summary = currentRating.toString();
+            listView.getItems().add(currentRating);
+        }
 
         return listView;
     }
